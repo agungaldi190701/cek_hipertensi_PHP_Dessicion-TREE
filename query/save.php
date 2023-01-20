@@ -27,13 +27,17 @@ if (isset($_POST["btn-simpan"])) {
 
 
 
-    $query = "INSERT INTO `hasil` (`id`, `nama`, `usia`, `kelamin`, `berat`, `hipertensi`) VALUES ('', '$nama', '$usia', '$kelamin', '$berat', '$hipertensi')";
+    $query = "INSERT INTO `hasil` VALUES (NULL, '$nama', '$usia', '$kelamin', '$berat', '$hipertensi')";
 
-    mysqli_query($db, $query);
+    $upload = mysqli_query($db, $query);
 
-
-
-    echo "<script >
+    if ($upload > 0) {
+        echo "<script >
     alert('Data Berhasil tambah , silahkan cek data anda di tabel hasil');
     </script>";
+    } else {
+        echo "<script >
+    alert('Data Gagal tambah !!!');
+    </script>";
+    }
 }
